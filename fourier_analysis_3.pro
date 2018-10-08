@@ -15,9 +15,7 @@ end
 
 file = 'light_curve_6.save'
 
-path = 'C:\Users\Frédéric Auchère\Desktop\ESAC\'
-
-restore, path + file
+restore, file
 
 ;--------- Fourier analysis --------------------
 
@@ -51,7 +49,7 @@ plot_oo, nu_psdt, psd, charsize=1, xtitle='frequency', ytitle='Power (sigma_0^2)
 	/xs, psym=10, title='Time-series - Fourier power spectrum', $
 	xr = frange, yr=yrange
 
-weights = 1/smooth(psd, 5, /edge)^2.0
+weights = 1/smooth(psd, 5, /edge_truncate)^2.0
 params = [psd[1]*(nu_psdt[1] - nu_psdt[0]), -2, 0]
 model_function = 'modela'
 fit = curvefit(nu_psdt, psd, weights, params, FUNCTION_NAME=model_function, /DOUBLE, ITMAX=100, TOL=1d-4)

@@ -1,8 +1,6 @@
 file = 'detrended_signal.save'
 
-path = 'C:\Users\Frédéric Auchère\Desktop\ESAC\'
-
-restore, path + file
+restore, file
 
 ;--------- Fourier analysis --------------------
 

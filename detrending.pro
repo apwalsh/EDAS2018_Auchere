@@ -1,8 +1,6 @@
 file = 'light_curve_6.save'
 
-path = 'C:\Users\Frédéric Auchère\Desktop\ESAC\'
-
-restore, path + file
+restore, file
 
 ;parameters
 ;1: width=4, xrange = [0.2, 0.21]
@@ -37,7 +35,7 @@ plot, dates, os, $
 
 ;--------- Detrending ----------------
 
-detrended_light_curve = light_curve - smooth(light_curve, width, /edge)
+detrended_light_curve = light_curve - smooth(light_curve, width, /edge_truncate)
 
 
 ds = (detrended_light_curve - mean(detrended_light_curve))/stddev(detrended_light_curve)
@@ -52,6 +50,6 @@ plot, dates, ds, $
 ;---- Save detrended time series -----------------------
 
 light_curve = detrended_light_curve
-save, dates, light_curve, file=path + 'detrended_signal.save
+save, dates, light_curve, file="detrended_signal.save"
 
 end
